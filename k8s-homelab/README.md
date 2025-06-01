@@ -47,7 +47,7 @@ This guide walks you through setting up a bare-metal Kubernetes cluster using `k
 - For each worker node (10.2.0.67 and 10.2.0.68):
 ```bash
 cd /home/ubuntu/k8s-homelab/scripts
-chmod +x join-worker.sh
+chmod +x join-master.sh
 sudo ./join-worker.sh "kubeadm join 10.2.0.54:6443 --token ... --discovery-token-ca-cert-hash ... --node-name worker-2"
 ```
 - Set label on each node: `kubectl label nodes anisur-1 node-role.kubernetes.io/worker=worker-1`
