@@ -5,6 +5,7 @@ export KUBESPRAYDIR=/home/anisur/go/src/kubernetes-sigs/kubespray
 python3 -m venv $VENVDIR
 source $VENVDIR/bin/activate # If fish it'll give error, use `. kubespray-venv/bin/activate.fish`
 cd $KUBESPRAYDIR
+export INVENTORY_DIR=/home/anisur/go/src/github.com/anisurrahman75/k8s-notes/k8s-inventory/inventory/
 pip install -U -r requirements.txt
 ```
 
@@ -12,8 +13,7 @@ pip install -U -r requirements.txt
 
 #### First go the kubespray repository 
 ```bash
-cd ~/go/src/kubernetes-sigs/kubespray/kubespray/
-export INVENTORY_DIR=/home/anisur/go/src/github.com/anisurrahman75/k8s-notes/k8s-inventory/inventory/
+cd $KUBESPRAYDIR
 
 ansible-playbook -i $INVENTORY_DIR/mycluster/hosts.yaml cluster.yml -b -v --become --become-user=root --private-key=~/.ssh/id_rsa
 
@@ -22,6 +22,7 @@ ansible-playbook -i $INVENTORY_DIR/mycluster/hosts.yaml cluster.yml -b -v --beco
 
 ## Deleting cluster
 ```bash
+
 ansible-playbook -i $INVENTORY_DIR/mycluster/hosts.yaml reset.yml -b -v --become --become-user=root --private-key=~/.ssh/id_rsa
 ```
 

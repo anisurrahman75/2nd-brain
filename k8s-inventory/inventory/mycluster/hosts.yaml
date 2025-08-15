@@ -1,26 +1,26 @@
 all:
   hosts:
-    noobaa1:
-      ansible_host: 10.2.0.218
+    ha-noobaa-01:
+      ansible_host: 10.2.0.4
       ansible_user: ubuntu
-    noobaa2:
-      ansible_host: 10.2.0.219
+    ha-noobaa-02:
+      ansible_host: 10.2.0.108
       ansible_user: ubuntu
-    noobaa3:
-      ansible_host: 10.2.0.182
+    ha-noobaa-03:
+      ansible_host: 10.2.0.100
       ansible_user: ubuntu
   children:
     kube_control_plane:
       hosts:
-        noobaa1:
+        ha-noobaa-01:
     kube_node:
       hosts:
-        noobaa1:
-        noobaa2:
-        noobaa3:
+        ha-noobaa-01:
+        ha-noobaa-02:
+        ha-noobaa-03:
     etcd:
       hosts:
-        noobaa1:
+        ha-noobaa-01:
     k8s_cluster:
       children:
         kube_control_plane:
