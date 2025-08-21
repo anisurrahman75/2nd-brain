@@ -1,1 +1,3 @@
 .idea
+k8s-storage/lvm/ubuntu-lvm-lab/.vagrant
+k8s-storage/lvm/ubuntu-lvm-lab/*.vdi
