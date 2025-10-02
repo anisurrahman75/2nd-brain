@@ -1,3 +1,74 @@
 .idea
 k8s-storage/lvm/ubuntu-lvm-lab/.vagrant
 k8s-storage/lvm/ubuntu-lvm-lab/*.vdi
+
+
+# -----------------------------------------------------------------------------
+# OS & Editor-specific ignores
+# -----------------------------------------------------------------------------
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# JetBrains IDEs (.idea folder)
+.idea/
+!.idea/runConfigurations/
+!.idea/codeStyles/
+!.idea/vcs.xml
+
+# VSCode (optional, if used)
+.vscode/
+.history/
+
+# -----------------------------------------------------------------------------
+# GitOps / Kustomize / Flux / Helm
+# -----------------------------------------------------------------------------
+
+# Flux artifacts (if downloaded manually)
+*.tar.gz
+
+# Helm chart artifacts
+charts/
+*.tgz
+
+# Kustomize build artifacts
+.kustomize/
+.kustomize-tmp/
+
+# .flux or tool-generated folders (rare)
+.flux/
+
+# kubeconfig or cluster secrets (do not commit!)
+kubeconfig
+.kube/
+secrets.yaml
+*.secret.yaml
+
+# -----------------------------------------------------------------------------
+# Logs, temp files, and system junk
+# -----------------------------------------------------------------------------
+
+*.log
+*.tmp
+*.swp
+*.bak
+*~
+
+# -----------------------------------------------------------------------------
+# Terraform (if you also use Terraform)
+# -----------------------------------------------------------------------------
+
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+*.tfvars
+
+# Lock files (optional)
+.terraform.lock.hcl
+
+.bin/*
