@@ -1,0 +1,30 @@
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  name: redis-standalone
+spec:
+  podSecurityContext:
+    runAsUser: 1000
+    fsGroup: 1000
+  kubernetesConfig:
+    image: quay.io/opstree/redis:latest
+    imagePullPolicy: Always
+    redisSecret:
+      name: redis-secret
+      key: password
+    resources:
+      requests:
+        cpu: 101m
+        memory: 128Mi
+      limits:
+        cpu: 101m
+        memory: 128Mi
+  storage:
+    keepAfterDelete: true
+    volumeClaimTemplate:
+      spec:
+#        storageClassName: longhorn
+        accessModes: [ReadWriteOnce]
+        resources:
+          requests:
+            storage: 512Mi

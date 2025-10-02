@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: url-shortener-backend
+  namespace: staging
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: url-shortener-backend
+      version: 0.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: ctrlzlab-helm-charts
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    postgres:
+      secretName: postgres-cluster-app
+    redisCache:
+        secretName: redis-secret
+    migrate:
+      enabled: true
+
+    image:
+      repository: ghcr.io/ctrlzlab/url-shortener
+      tag: "latest"
+      pullPolicy: "Always"
+
+    ingress:
+      enabled: true
+
