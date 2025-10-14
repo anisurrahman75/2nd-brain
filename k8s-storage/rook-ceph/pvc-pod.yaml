@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pvc
+  namespace: rook-ceph
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: rook-ceph-block
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rook-ceph-block
+  namespace: rook-ceph
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep infinity
+    securityContext:
+      # allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: false
+      # capabilities:
+      #   drop:
+      #     - ALL
+    volumeMounts:
+    - name: my-volume
+      mountPath: /target/mountpath
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: test-pvc
